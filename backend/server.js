@@ -46,6 +46,7 @@ function handleError(res, error, message = "Error interno del servidor") {
 // Obtener todos los productos
 app.get("/api/productos", async (req, res) => {
   try {
+    console.log("Fetching products...")
     const [rows] = await pool.query("SELECT id, nombre, descripcion, precio, stock FROM productos ORDER BY id DESC");
     res.json(rows);
   } catch (err) {
@@ -57,6 +58,7 @@ app.get("/api/productos", async (req, res) => {
 app.get("/api/productos/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    console.log(`Fetching product ${id} ...`)
     const [rows] = await pool.query("SELECT id, nombre, descripcion, precio, stock FROM productos WHERE id = ?", [id]);
     if (rows.length === 0) {
       return res.status(404).json({ message: "Producto no encontrado." });
