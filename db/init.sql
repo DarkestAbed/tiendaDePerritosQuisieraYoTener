@@ -1,20 +1,18 @@
-CREATE DATABASE IF NOT EXISTS 
-    tienda_perritos
-;
+-- init.sql
 
-GRANT
-    ALL PRIVILEGES
-ON
-    tienda_perritos.*
-TO
-    'root'@'%'
-;
+CREATE DATABASE IF NOT EXISTS tienda_perritos;
+
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY 'admin123';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 
-USE
-    tienda_perritos
-;
+GRANT ALL PRIVILEGES ON tienda_perritos.* TO 'root'@'%';
+
+FLUSH PRIVILEGES;
+
+USE tienda_perritos;
 
 CREATE TABLE IF NOT EXISTS
     productos 
